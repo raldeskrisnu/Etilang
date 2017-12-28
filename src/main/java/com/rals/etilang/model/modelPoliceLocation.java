@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,7 +43,7 @@ public class modelPoliceLocation {
 	private modelPoliceLocation modelPoliceLocation;*/
 	
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_polisi",referencedColumnName="id_polisi")
     private modelPoliceData modelpolicedata;
 	
@@ -59,7 +60,6 @@ public class modelPoliceLocation {
 	}
 
 	public void setIdLocation(Long idlokasi) {
-
 		this.id_lokasi = idlokasi;
 	}
 
@@ -67,7 +67,7 @@ public class modelPoliceLocation {
 	public Long getIdLocation() {
 		return this.id_lokasi;
 	}
-
+	
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}

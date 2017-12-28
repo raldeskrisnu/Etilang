@@ -8,5 +8,5 @@ import com.rals.etilang.model.modelPoliceLocation;
 public interface policeLocationRepository extends JpaRepository<modelPoliceLocation, Long>{
 	
 	
-
+	
 }
