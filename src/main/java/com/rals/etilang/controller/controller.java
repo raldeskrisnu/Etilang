@@ -2,13 +2,18 @@ package com.rals.etilang.controller;
 
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
+
+import com.rals.etilang.repository.policeDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rals.etilang.model.modelPoliceData;
@@ -18,6 +23,8 @@ import com.rals.etilang.service.policeLocationService;
 
 @RestController
 public class controller {
+
+	private policeDataRepository repository;
 
 	@Autowired
 	policeDataService policeService;
@@ -61,6 +68,20 @@ public class controller {
 		}
 		
 		return new ResponseEntity<List<modelPoliceLocation>>(employees, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/savepolicedata", method = RequestMethod.POST)
+	public @ResponseBody String addpoliceData(@RequestParam Long id_polisi, @RequestParam String namapolisi, @RequestParam String alamat, @RequestParam String namasatuan, @RequestParam String foto, @RequestParam String username, @RequestParam String password) {
+		modelPoliceData model = new modelPoliceData();
+		model.setIdPolisi(id_polisi);
+		model.setAlamatPolisi(alamat);
+		model.SetNama(namapolisi);
+		model.SetNamaSatuan(namasatuan);
+		model.SetFoto(foto);
+		model.SetUsername(username);
+		model.SetPassword(password);
+		repository.save(model);
+		return "Done";
 	}
 
 	
