@@ -69,19 +69,30 @@ public class controller {
 	}
 	
 	@RequestMapping(value = "/savepolicedata", method = RequestMethod.POST)
-	public @ResponseBody String addpoliceData(@RequestParam String namapolisi, @RequestParam String alamat, @RequestParam String namasatuan, @RequestParam String foto, @RequestParam String username, @RequestParam String password) {
+	public @ResponseBody modelPoliceData addpoliceData(@RequestParam Long idpolisi,@RequestParam String namapolisi, @RequestParam String alamat, @RequestParam String namasatuan, @RequestParam String foto, @RequestParam String username, @RequestParam String password) {
 		modelPoliceData model = new modelPoliceData();
-	//	model.setIdPolisi(3);
+		model.setIdPolisi(idpolisi);
 		model.setAlamatPolisi(alamat);
 		model.SetNama(namapolisi);
 		model.SetNamaSatuan(namasatuan);
 		model.SetFoto(foto);
 		model.SetUsername(username);
 		model.SetPassword(password);
-		System.out.println(model.toString());
 		policeService.save(model);
-		return "Done";
+		return model;
 	}
+
+	@RequestMapping(value = "/deletePolice/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<List<modelPoliceData>> deletePolice(@PathVariable(value = "id") Long idpolisi) {
+		if(idpolisi == null) {
+			return ResponseEntity.notFound().build();
+		} else {
+			policeService.delete(idpolisi);
+			return ResponseEntity.ok().build();
+		}
+
+	}
+
 
 	
 }

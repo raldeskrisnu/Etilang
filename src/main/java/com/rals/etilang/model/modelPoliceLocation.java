@@ -18,6 +18,7 @@ import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.json.JSONObject;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -39,11 +40,6 @@ public class modelPoliceLocation {
 	@JsonProperty("latitude")
 	private double latitude;
 
-	/*@OneToMany
-	@JoinColumn(name="idlokasi")
-	private modelPoliceLocation modelPoliceLocation;*/
-	
-	
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_polisi",referencedColumnName="id_polisi")
     private modelPoliceData modelpolicedata;
@@ -86,6 +82,7 @@ public class modelPoliceLocation {
 	}
 	
 	@JsonProperty("idpolisi")
+	@JsonIgnoreProperties(value = {"password"})
 	public modelPoliceData modelPoliceData() {
 		return this.modelpolicedata;
 	}
@@ -104,14 +101,4 @@ public class modelPoliceLocation {
 		
 	
 	}
-
-	/*
-	 * @Override public boolean equals(Object obj) { if (this == obj) return true;
-	 * if (id_polisi == null || obj == null || getClass() != obj.getClass()) return
-	 * false; modelEtilang toCompare = (modelEtilang) obj; return
-	 * id_polisi.equals(toCompare.id_polisi); }
-	 * 
-	 * @Override public int hashCode() { return id_polisi == null ? 0 :
-	 * id_polisi.hashCode(); }
-	 */
 }

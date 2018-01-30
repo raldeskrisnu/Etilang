@@ -16,6 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @Entity
@@ -25,13 +26,11 @@ public class modelPoliceData implements java.io.Serializable {
 	private static final long serialVersionUID = 4910225916550731446L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@JsonProperty("idpolisi")
 	private Long id_polisi;
 	
 	@JsonProperty("namapolisi")
 	private String nama;
-
 
 	@JsonProperty("alamatpolisi")
 	private String alamat;
@@ -47,7 +46,8 @@ public class modelPoliceData implements java.io.Serializable {
 	
 	@JsonProperty("namasatuan")
 	private String username;
-	
+
+	@JsonIgnore
 	@JsonProperty("password")
 	private String password;
 	
@@ -138,8 +138,8 @@ public class modelPoliceData implements java.io.Serializable {
 	public void SetPassword(String password) {
 		this.password = password;
 	}
-	
-	@JsonProperty("password")
+
+
 	public String GetPassword() {
 		return password;
 	}
