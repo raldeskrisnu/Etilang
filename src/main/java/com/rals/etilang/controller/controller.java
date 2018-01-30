@@ -24,13 +24,11 @@ import com.rals.etilang.service.policeLocationService;
 @RestController
 public class controller {
 
-	private policeDataRepository repository;
-
 	@Autowired
-	policeDataService policeService;
+	private policeDataService policeService;
 	
 	@Autowired
-	policeLocationService policelocationservice;
+	private policeLocationService policelocationservice;
 	
 	@RequestMapping("/")
 	public String index() {
@@ -71,16 +69,17 @@ public class controller {
 	}
 	
 	@RequestMapping(value = "/savepolicedata", method = RequestMethod.POST)
-	public @ResponseBody String addpoliceData(@RequestParam Long id_polisi, @RequestParam String namapolisi, @RequestParam String alamat, @RequestParam String namasatuan, @RequestParam String foto, @RequestParam String username, @RequestParam String password) {
+	public @ResponseBody String addpoliceData(@RequestParam String namapolisi, @RequestParam String alamat, @RequestParam String namasatuan, @RequestParam String foto, @RequestParam String username, @RequestParam String password) {
 		modelPoliceData model = new modelPoliceData();
-		model.setIdPolisi(id_polisi);
+	//	model.setIdPolisi(3);
 		model.setAlamatPolisi(alamat);
 		model.SetNama(namapolisi);
 		model.SetNamaSatuan(namasatuan);
 		model.SetFoto(foto);
 		model.SetUsername(username);
 		model.SetPassword(password);
-		repository.save(model);
+		System.out.println(model.toString());
+		policeService.save(model);
 		return "Done";
 	}
 

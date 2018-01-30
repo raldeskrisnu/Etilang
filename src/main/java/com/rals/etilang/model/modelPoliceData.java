@@ -25,13 +25,14 @@ public class modelPoliceData implements java.io.Serializable {
 	private static final long serialVersionUID = 4910225916550731446L;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	@JsonProperty("idpolisi")
 	private Long id_polisi;
 	
 	@JsonProperty("namapolisi")
 	private String nama;
-	
+
+
 	@JsonProperty("alamatpolisi")
 	private String alamat;
 	
