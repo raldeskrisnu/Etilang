@@ -33,4 +33,15 @@ public class PoliceLocationController {
         return policelocationservice.save(modelPoliceLocation);
     }
 
+    @RequestMapping(value = "/getpolicelocation/{id}", method = RequestMethod.POST)
+    public ResponseEntity<modelPoliceLocation> getPolice(@PathVariable("id") Long id) {
+        modelPoliceLocation employee = policelocationservice.getById(id);
+        if (employee == null) {
+
+            return new ResponseEntity<modelPoliceLocation>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<modelPoliceLocation>(employee, HttpStatus.OK);
+    }
+
 }
