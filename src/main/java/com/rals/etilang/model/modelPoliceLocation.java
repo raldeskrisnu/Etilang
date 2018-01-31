@@ -30,9 +30,8 @@ public class modelPoliceLocation {
 	private static final long serialVersionUID = 4910225916550731446L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@JsonProperty("id_lokasi")
-	private Long id_lokasi;
+	private String id_lokasi;
 
 	@JsonProperty("longitude")
 	private double longitude;
@@ -40,7 +39,7 @@ public class modelPoliceLocation {
 	@JsonProperty("latitude")
 	private double latitude;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "id_polisi",referencedColumnName="id_polisi")
     private modelPoliceData modelpolicedata;
 	
@@ -48,7 +47,7 @@ public class modelPoliceLocation {
 
 	}
 
-	public modelPoliceLocation(Long idlokasi, double latitude, double longitude) {
+	public modelPoliceLocation(String idlokasi, double latitude, double longitude) {
 
 		this.id_lokasi = idlokasi;
 		this.latitude = latitude;
@@ -56,12 +55,12 @@ public class modelPoliceLocation {
 		
 	}
 
-	public void setIdLocation(Long idlokasi) {
+	public void setIdLocation(String idlokasi) {
 		this.id_lokasi = idlokasi;
 	}
 
 	@JsonProperty("id_lokasi")
-	public Long getIdLocation() {
+	public String getIdLocation() {
 		return this.id_lokasi;
 	}
 	

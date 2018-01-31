@@ -44,15 +44,13 @@ public class modelPoliceData implements java.io.Serializable {
 	@JsonProperty("foto")
 	private String foto;
 	
-	@JsonProperty("namasatuan")
+	@JsonProperty("username")
 	private String username;
 
 	@JsonIgnore
 	@JsonProperty("password")
 	private String password;
-	
-	/*@ManyToOne(mappedBy = "id_polisi", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<modelPoliceLocation> modelpolicelocation;*/
+
 	
 	public modelPoliceData() {
 		
@@ -79,7 +77,7 @@ public class modelPoliceData implements java.io.Serializable {
 		
 		this.id_polisi = id_polisi;
 	}
-	
+
 	@JsonProperty("namapolisi")
 	public String GetNama() {
 		return this.nama;
@@ -101,9 +99,8 @@ public class modelPoliceData implements java.io.Serializable {
 	public void SetTanggalLahir(Date tanggal_Lahir) {
 		this.tanggal_Lahir = tanggal_Lahir;
 	}
-	
-	@JsonProperty("tanggallahir")
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "GMT+7")
+
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy", timezone = "GMT+7")
 	public Date GetTanggalLahir() {
 		return this.tanggal_Lahir;
 	}
@@ -143,15 +140,7 @@ public class modelPoliceData implements java.io.Serializable {
 	public String GetPassword() {
 		return password;
 	}
-	
-   /* public void setPoliceLocation(Set<modelPoliceLocation> modelpolicelocation){
-    		this.modelpolicelocation = modelpolicelocation;
-    }
-    
-    public Set<modelPoliceLocation> getPoliceLocation(){
-    		return this.modelpolicelocation;
-    }*/
-	
+
 	@Override
 	public String toString() {
 		StringBuffer sb = new StringBuffer();
