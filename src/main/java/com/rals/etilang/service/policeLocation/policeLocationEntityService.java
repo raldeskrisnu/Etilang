@@ -23,7 +23,7 @@ public class policeLocationEntityService implements policeLocationService {
 	
 	@Override
 	public modelPoliceLocation getById(Serializable id) {
-		return etilangrepo.findOne((Long) id);
+		return etilangrepo.findOne((String) id);
 	}
 	
 	@Override
@@ -35,7 +35,7 @@ public class policeLocationEntityService implements policeLocationService {
 	
 	@Override
 	public void delete(Serializable id) {
-		etilangrepo.delete((Long) id);
+		etilangrepo.delete((String) id);
 	}
 
 }

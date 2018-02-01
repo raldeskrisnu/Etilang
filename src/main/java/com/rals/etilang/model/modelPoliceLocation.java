@@ -97,7 +97,5 @@ public class modelPoliceLocation {
 		.append(", nama: ").append(this.latitude)
 		.append(", alamat: ").append(this.longitude);
 		return sb.toString();
-		
-	
 	}
 }

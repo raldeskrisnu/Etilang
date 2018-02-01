@@ -33,15 +33,42 @@ public class PoliceLocationController {
         return policelocationservice.save(modelPoliceLocation);
     }
 
-    @RequestMapping(value = "/getpolicelocation/{id}", method = RequestMethod.POST)
-    public ResponseEntity<modelPoliceLocation> getPolice(@PathVariable("id") Long id) {
+    @RequestMapping(value = "/getpolicelocation/{id}", method = RequestMethod.GET)
+    public ResponseEntity<modelPoliceLocation> getPolice(@PathVariable("id") String id) {
         modelPoliceLocation employee = policelocationservice.getById(id);
+        System.out.println("data"+ employee);
         if (employee == null) {
 
             return new ResponseEntity<modelPoliceLocation>(HttpStatus.NOT_FOUND);
         }
 
         return new ResponseEntity<modelPoliceLocation>(employee, HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "updatepolicelocation/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<modelPoliceLocation> updatePoliceData(@PathVariable(value = "id") Long idpolisi, @RequestBody modelPoliceLocation modelPoliceLocation) {
+
+        modelPoliceLocation model = policelocationservice.getById(idpolisi);
+        if(model == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        model.setLongitude(modelPoliceLocation.getLongitude());
+        model.setLatitude(modelPoliceLocation.getLatitude());
+
+        modelPoliceLocation updatemodel = policelocationservice.save(model);
+        return ResponseEntity.ok(updatemodel);
+    }
+
+    @RequestMapping(value = "deletePoliceLocation/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<modelPoliceLocation>deleteLocation(@PathVariable(value = "id") String idlokasi) {
+        modelPoliceLocation model = policelocationservice.getById(idlokasi);
+        if(model == null){
+            return ResponseEntity.notFound().build();
+        }
+
+        policelocationservice.delete(idlokasi);
+        return ResponseEntity.ok().build();
     }
 
 }
