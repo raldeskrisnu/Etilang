@@ -22,7 +22,7 @@ public class vehicleEntityService implements vehicleDataService {
 
     @Override
     public modelVehichleData getById(Serializable id) {
-        return vehicleDataRepository.findOne((Long) id);
+        return vehicleDataRepository.findOne((String) id);
     }
 
     @Override
@@ -32,6 +32,6 @@ public class vehicleEntityService implements vehicleDataService {
 
     @Override
     public void delete(Serializable id) {
-        vehicleDataRepository.delete((Long) id);
+        vehicleDataRepository.delete((String) id);
     }
 }
