@@ -89,9 +89,4 @@ public class policeController {
 		return ResponseEntity.ok(updatemodel);
 
 	}
-
-
-
-
-	
 }

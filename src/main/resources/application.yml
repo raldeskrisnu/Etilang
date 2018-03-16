@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: stock-service
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8030/eureka
+  instance:
+    preferIpAddress: true
