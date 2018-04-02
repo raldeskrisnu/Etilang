@@ -1,6 +1,6 @@
 spring:
   application:
-    name: stock-service
+    name: e-tilang
 
 eureka:
   client:
