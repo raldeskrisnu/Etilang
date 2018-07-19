@@ -20,12 +20,12 @@ public class kejaksaanController {
 
     @RequestMapping(value = "/getDataKejaksaanNegeri", method = RequestMethod.GET)
     public ResponseEntity<List<modelKejaksaanNegeri>> displayKejaksaanNegeri() {
-        List<modelKejaksaanNegeri> employees = kejaksaanNegeriService.getDataKejaksaanNegeri();
-        if (employees.isEmpty()) {
+        List<modelKejaksaanNegeri> getKejaksaanNegeriData = kejaksaanNegeriService.getDataKejaksaanNegeri();
+        if (getKejaksaanNegeriData.isEmpty()) {
 
             return new ResponseEntity<List<modelKejaksaanNegeri>>(HttpStatus.NO_CONTENT);
         }
 
-        return new ResponseEntity<List<modelKejaksaanNegeri>>(employees, HttpStatus.OK);
+        return new ResponseEntity<List<modelKejaksaanNegeri>>(getKejaksaanNegeriData, HttpStatus.OK);
     }
 }
